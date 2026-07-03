@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — ZR Points</title>
+<title>Privacy Policy — ZR Points</title>
 <style>
   :root {
     --bg: #0d0f14;
@@ -14,6 +14,8 @@
     --text: #e6e8ec;
     --text-dim: #9aa1ac;
     --text-dimmer: #6b7280;
+    --green: #57c785;
+    --red: #e06c75;
   }
   * { box-sizing: border-box; }
   body {
@@ -76,6 +78,7 @@
     align-items: center;
     gap: 10px;
   }
+  h3 { font-size: 17px; color: var(--text); margin: 22px 0 8px; }
 
   .card {
     background: var(--card);
@@ -98,9 +101,16 @@
   ul.plain .emoji { flex-shrink: 0; }
 
   .note { font-size: 13.5px; color: var(--text-dimmer); margin-top: 14px; line-height: 1.6; }
-  p.desc { margin: 0; font-size: 14.5px; color: var(--text-dim); }
+  .badge-yes { color: var(--green); font-weight: 600; }
+  .badge-no { color: var(--red); font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-top: 8px; }
+  table th, table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--card-border); }
+  table th { color: var(--text-dim); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .03em; }
 
   footer { text-align: center; color: var(--text-dimmer); font-size: 13px; margin-top: 60px; }
+  a.inline { color: var(--accent); }
+  p.desc { margin: 0; font-size: 14.5px; color: var(--text-dim); }
 </style>
 </head>
 <body>
@@ -112,74 +122,119 @@
   </div>
 
   <div class="doc-header">
-    <div class="icon">📄</div>
-    <h1>Terms of Service</h1>
+    <div class="icon">🔐</div>
+    <h1>Privacy Policy</h1>
     <div class="meta">🤖 <b>Bot:</b> ZR Points</div>
     <div class="meta">📅 <b>Effective Date:</b> July 3, 2026</div>
   </div>
 
   <div class="intro-box">
-    By using the Points Bot on any Discord server, you agree to the terms below. If you do not agree, please discontinue use of the bot.
+    This Privacy Policy explains what data the bot processes on Discord servers, why it is processed, and how long it is retained.
   </div>
 
   <section>
-    <h2>1️⃣ Nature of the Service</h2>
+    <h2>📋 Data We Collect</h2>
+    <div class="card">
+      <ul class="plain">
+        <li><span class="emoji">👤</span> User IDs</li>
+        <li><span class="emoji">🏠</span> Server (Guild) IDs</li>
+        <li><span class="emoji">💬</span> Channel IDs where activity takes place</li>
+        <li><span class="emoji">🎭</span> Role IDs (used for permission checks and temporary role assignment)</li>
+        <li><span class="emoji">📝</span> Selected characteristics of message content (see section below)</li>
+        <li><span class="emoji">🔊</span> Voice channel activity (join/leave timestamps, mute/deafen state)</li>
+        <li><span class="emoji">😀</span> Reactions (emoji used, ID of the message reacted to)</li>
+        <li><span class="emoji">💰</span> Virtual point balance and transaction history</li>
+        <li><span class="emoji">🎮</span> Game statistics (wins/losses, amounts wagered)</li>
+      </ul>
+      <div class="note">
+        The bot does <b>not</b> use the <b>Presence Intent</b> (online/offline status of other users) — this is not required by, and is not used by, any bot feature.
+      </div>
+    </div>
+
+    <h3>Message Content — What Exactly Is Analyzed</h3>
+    <div class="card">
+      <p class="desc" style="margin-bottom:10px;">
+        The bot requires the <b>Message Content Intent</b> because some of its features (task system, ad-link detection, anti-spam, the boss-fight event) need to analyze message content in real time. The bot only extracts the characteristics listed below — it does <b>not</b> permanently store the full text of messages:
+      </p>
+      <ul class="plain">
+        <li><span class="emoji">🔗</span> Presence of an invite link (discord.gg) — used to detect server advertisements in designated channels</li>
+        <li><span class="emoji">🖼️</span> Presence of an image, GIF, or sticker — used for point rewards and daily tasks</li>
+        <li><span class="emoji">❓</span> Presence of a question mark / emoji in the text — used for themed tasks</li>
+        <li><span class="emoji">🔁</span> Comparison with the user's previous message — anti-spam mechanism (duplicate/copy-paste detection)</li>
+        <li><span class="emoji">⚔️</span> The literal word "attack" in a designated channel — a text command used in the boss-fight event</li>
+      </ul>
+      <div class="note">Extracted data (e.g. "number of messages containing an image") is stored as aggregated counters, not as the original message text.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>⚙️ Why We Process This Data</h2>
+    <div class="card">
+      <table>
+        <tr><th>Purpose</th><th>Data Used</th></tr>
+        <tr><td>Awarding points for activity</td><td>User ID, Channel ID, message characteristics, reactions, voice activity</td></tr>
+        <tr><td>Permission verification (verified role)</td><td>User ID, Role ID</td></tr>
+        <tr><td>Daily and server-wide task system</td><td>User ID, message characteristics, activity counters</td></tr>
+        <tr><td>Shop and temporary roles</td><td>User ID, Role ID, wallet balance</td></tr>
+        <tr><td>Mini-games and virtual economy</td><td>User ID, wallet balance, game statistics</td></tr>
+        <tr><td>Moderation / anti-spam</td><td>Last message content (comparison only), Channel ID</td></tr>
+        <tr><td>Leaderboards and player profiles</td><td>User ID, points, statistics</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>🗄️ Data Storage</h2>
     <div class="card">
       <p class="desc">
-        ZR Points is an activity and virtual economy system that operates exclusively within the Discord server on which it is installed. The bot rewards activity (messages, reactions, voice channels, tasks) with virtual points, which can be redeemed for rewards in the server shop, temporary roles, and used in mini-games.
+        Data is stored locally on the bot's hosting server and used exclusively to support the features described in this Policy. Wallet and statistics data are periodically reset as part of the recurring points-system reset cycle (every 60 days by default) — resets are announced on the server in advance.
       </p>
     </div>
   </section>
 
   <section>
-    <h2>2️⃣ Virtual Currency</h2>
+    <h2>🤝 Data Sharing</h2>
     <div class="card">
       <ul class="plain">
-        <li><span class="emoji">💰</span> Points are earned <b>exclusively through activity</b> on the server — they cannot be purchased with real money.</li>
-        <li><span class="emoji">🚫</span> Points have no monetary value and cannot be exchanged for real currency or assets outside the server.</li>
-        <li><span class="emoji">🔄</span> Point balances, statistics, and related data may be periodically reset in accordance with the rules announced on the server.</li>
-        <li><span class="emoji">⚖️</span> Server staff reserve the right to correct point balances in the event of system errors, abuse, or exploits.</li>
+        <li><span class="emoji"><span class="badge-no">✗</span></span> Data is never sold or shared with third parties</li>
+        <li><span class="emoji"><span class="badge-no">✗</span></span> Data is never used for advertising purposes outside the server</li>
+        <li><span class="emoji"><span class="badge-yes">✓</span></span> Data may be visible to server administrators as part of standard moderation features (e.g. activity logs, transaction history)</li>
       </ul>
     </div>
   </section>
 
   <section>
-    <h2>3️⃣ Rules of Use</h2>
-    <div class="card">
-      <p class="desc" style="margin-bottom:10px;">The following is prohibited:</p>
-      <ul class="plain">
-        <li><span class="emoji">🚫</span> Exploiting bugs or vulnerabilities in the bot to unfairly gain points</li>
-        <li><span class="emoji">🚫</span> Creating multiple accounts (alt accounts) to bypass limits or artificially generate activity</li>
-        <li><span class="emoji">🚫</span> Spamming messages, reactions, or voice channels solely to farm points</li>
-        <li><span class="emoji">🚫</span> Trading points or virtual items outside the mechanisms provided by the bot</li>
-      </ul>
-      <div class="note">Violation of the above rules may result in point balance resets, revocation of rewards, or other sanctions determined by the administration of the given server.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>4️⃣ Service Availability</h2>
+    <h2>👶 Children</h2>
     <div class="card">
       <p class="desc">
-        The bot is provided "as is," without any guarantee of uninterrupted operation. We are not liable for downtime, data loss caused by technical failure, or interruptions in feature availability resulting from limitations of the Discord platform.
+        The bot is intended to be used in accordance with <a class="inline" href="https://discord.com/terms" target="_blank" rel="noopener">Discord's Terms of Service</a>, which require users to be at least 13 years old (or the minimum age required in their country). We do not knowingly collect data from users below this age.
       </p>
     </div>
   </section>
 
   <section>
-    <h2>5️⃣ Changes to These Terms</h2>
+    <h2>✋ Your Rights</h2>
     <div class="card">
       <p class="desc">
-        These Terms may be updated at any time. Significant changes will be announced on the server. Continued use of the bot after changes take effect constitutes acceptance of those changes.
+        You may request deletion of your data (wallet, statistics, history) at any time by contacting server staff through the ticket system. You may also stop using the bot at any time — your data will no longer be actively collected.
       </p>
     </div>
   </section>
 
   <section>
-    <h2>6️⃣ Contact</h2>
+    <h2>✏️ Changes to This Policy</h2>
     <div class="card">
       <p class="desc">
-        For any questions regarding these Terms, please contact server staff through the ticket system.
+        We may update this Privacy Policy from time to time. Significant changes will be announced on the server. Continued use of the bot after changes take effect constitutes acceptance of those changes.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>✉️ Contact</h2>
+    <div class="card">
+      <p class="desc">
+        For any questions regarding privacy or data handling, please contact server staff through the ticket system.
       </p>
     </div>
   </section>
